@@ -1,0 +1,145 @@
+
+:root {
+    /* Base Colors */
+    --color-white: #FFFFFF;
+    --color-black: #2C3E50;
+    --color-dark-bg: #1A1A1A; /* For dark mode background */
+  
+    /* Primary Colors */
+    --color-blue: #4A89DC;
+    --color-green: #48CFAD;
+    --color-red: #E9573F;
+    --color-purple: #967ADC;
+  
+    /* Optional: Lighter/Darker variants */
+    --color-blue-light: rgba(74, 137, 220, 0.1);
+    --color-green-light: rgba(72, 207, 173, 0.1);
+    --color-red-light: rgba(233, 87, 63, 0.1);
+    --color-purple-light: rgba(150, 122, 220, 0.1);
+  }
+
+*{
+    color: white;
+    margin: 0;
+    padding: 0;
+}
+
+ul, li{
+    text-decoration: none;
+    list-style: none;
+    padding: 0;
+}
+.fcont{
+    display: flex;
+    justify-content: space-between;
+    margin: 0;
+}
+
+.right{
+    display: flex;
+    justify-content: space-between;
+    width: 2%;
+    margin-right: 20px;
+}
+
+.scont{
+    margin-top: 40px;
+   display: flex;
+   flex-direction: column;
+   justify-content: space-between;
+   align-items: center;
+   width: 50px;
+   height: 540px;
+}
+.list{
+    margin: 0;
+}
+.logo{
+    margin: 8px;
+}
+.right{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-right: 35px;
+}
+.nav{
+    height: 60%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+.nav ul{
+    margin: 0;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    margin-left: -10px;
+}
+.nav .icon{
+    font-size: 17px;
+}
+.nav li{
+    cursor: pointer;
+    transition: all 0.3s ease;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 8px;
+}
+.nav li:hover{
+    background-color: var(--color-purple);
+}
+.buttom{
+    width: 100%;
+    height: 15%;
+    
+}
+
+.buttom ul{
+    height: 100%;
+    margin-left: -18px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.buttom .icon{
+    font-size: 17px;
+}
+.buttom li{
+    cursor: pointer;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.3s ease;
+    border-radius: 8px;
+}
+.buttom li:hover, .right p:hover{
+    background-color: var(--color-purple);
+    border: 1px solid var(--color-purple);
+}
+.right{
+    width: 7%;
+}
+
+.right p{
+    border: 1px solid var(--color-white);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2px;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    font-size: 15px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
