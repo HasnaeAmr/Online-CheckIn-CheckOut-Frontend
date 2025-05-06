@@ -1,4 +1,5 @@
 
+
 :root {
     /* Base Colors */
     --color-white: #FFFFFF;
@@ -18,13 +19,32 @@
     --color-purple-light: rgba(150, 122, 220, 0.1);
   }
 
-.content{
-    background-color: #eee;
-    margin-left: 50px;
-    margin-top: 60px;
-    position: relative;
+  
+  .icon {
+    font-size: 24px; /* Adjust size */
+    color: #007bff; /* Change color */
+    margin-right: 10px; /* Add spacing */
+  }
+
+.head h2{
     color: var(--color-dark-bg);
-    z-index: 1;
-    padding: 30px;
-    border-top-left-radius: 50px;
 }
+.head{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.add-user{
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background-color: var(--color-dark-bg);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 10px;
+    cursor: pointer;
+  }
+  

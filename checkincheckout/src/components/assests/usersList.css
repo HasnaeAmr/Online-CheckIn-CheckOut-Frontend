@@ -1,0 +1,220 @@
+
+:root {
+    /* Base Colors */
+    --color-white: #FFFFFF;
+    --color-black: #2C3E50;
+    --color-dark-bg: #1A1A1A; /* For dark mode background */
+  
+    /* Primary Colors */
+    --color-blue: #4A89DC;
+    --color-green: #48CFAD;
+    --color-red: #E9573F;
+    --color-purple: #967ADC;
+  
+    /* Optional: Lighter/Darker variants */
+    --color-blue-light: rgba(74, 137, 220, 0.1);
+    --color-green-light: rgba(72, 207, 173, 0.1);
+    --color-red-light: rgba(233, 87, 63, 0.1);
+    --color-purple-light: rgba(150, 122, 220, 0.1);
+  }
+.users-container {
+    padding: 20px;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+  }
+  
+  .users-table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: white;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  
+  .users-table thead tr {
+    background-color: var(--color-dark-bg);
+    color: white;
+    text-align: left;
+  }
+  
+  .users-table th {
+    padding: 15px 20px;
+    font-weight: 500;
+  }
+  
+  .users-table tbody tr {
+    border-bottom: 1px solid #eee;
+  }
+  
+  
+  .users-table td {
+    padding: 12px 20px;
+  }
+  
+  .users-table tbody td:not(:last-child) {
+    color: #555;
+  }
+  
+  .users-table tbody td {
+    color: #333;
+    font-weight: 500;
+  }
+  
+  .role-badge {
+    display: inline-block;
+    padding: 4px 8px;
+    border-radius: 15px;
+    font-size: 0.85rem;
+    width: 60px;
+    text-align: center;
+  }
+  
+  
+.role-badge {
+    display: inline-block;
+    padding: 6px 12px;
+    border-radius: 16px; 
+    font-size: 0.75rem;
+    font-weight: 700; 
+    letter-spacing: 0.5px;
+    text-transform: capitalize;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+    transition: all 0.2s ease;
+  }
+
+  .role-admin {
+    background-color: rgba(150, 122, 220, 0.12);
+    color: var(--color-purple);
+  }
+  
+  .role-user {
+    background-color: rgba(33, 150, 243, 0.12); 
+    color: var(--color-blue);
+  }
+  
+  .role-other {
+    background-color: rgba(76, 175, 80, 0.12); 
+    color: var(--color-green);
+    
+    width: 100px;
+    
+  }
+  
+  .role-badge:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  }
+  
+  :root {
+    --color-purple: #967ADC;
+    --color-blue: #2196F3;
+    --color-green: #4CAF50;
+  }
+  
+  .action-buttons {
+    display: flex;
+    gap: 8px;
+  }
+  
+  .edit-btn {
+    padding: 8px;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(26, 26, 26);
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    font-size: 14px;
+  }
+  
+  .delete-btn {
+    padding: 8px;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(26, 26, 26);
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    font-size: 14px;
+  }
+  
+  .delete-btn:hover, .edit-btn:hover {
+    background-color: rgb(82, 82, 82);
+  }
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.edit-user-modal {
+  background: white;
+  padding: 2rem;
+  border-radius: 8px;
+  width: 90%;
+  max-width: 500px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+}
+
+.form-group input,
+.form-group select {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 1rem;
+}
+
+.form-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.save-btn {
+  background-color: #967ADC;
+  color: white;
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.cancel-btn {
+  background-color: #f5f5f5;
+  color: #333;
+  padding: 0.75rem 1.5rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  cursor: pointer;
+}

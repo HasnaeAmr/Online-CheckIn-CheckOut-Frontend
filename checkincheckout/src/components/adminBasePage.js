@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import './assests/basepage.css';
 import { useAuth } from './AuthContext';
 import { useNavigate } from 'react-router-dom';
-import { faUser, faBell, faSignOut , faSquareH, faList, faDoorOpen, faDoorClosed , faBellConcierge, faListNumeric } from '@fortawesome/free-solid-svg-icons'
+import { faUser, faBell, faUsers , faBed , faSignOut , faHouse, faSquareH, faList, faDoorOpen, faDoorClosed , faBellConcierge, faListNumeric } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -21,18 +21,20 @@ const navigate=useNavigate()
             <img src="../logo.svg"/>
         </div>
         <div className="right">
-            <p><FontAwesomeIcon icon={faUser} /></p>
-            <p><FontAwesomeIcon icon={faBell} /></p>
+                    <p><FontAwesomeIcon icon={faUser} /></p>
+                    <p><FontAwesomeIcon icon={faBell} /></p>
         </div>
         
         </div>
         <div className="scont">
         <div className="nav">
             <ul className="list">
+                <li><FontAwesomeIcon className='icon' icon={faHouse} /></li>
                 <li><FontAwesomeIcon className='icon' icon={faSquareH} /></li>
-                <li><FontAwesomeIcon className='icon' icon={faList} /></li>
-                <li><FontAwesomeIcon className='icon' icon={faDoorOpen} /></li>
-                <li><FontAwesomeIcon className='icon' icon={faDoorClosed} /></li>
+                <li  onClick = { () => {
+                    navigate("/users")
+                }}><FontAwesomeIcon className='icon' icon={faUsers} /></li>
+                <li onClick={() => navigate("/Chambres")}><FontAwesomeIcon className='icon' icon={faBed} /></li>
                 <li><FontAwesomeIcon className='icon' icon={faBellConcierge} /></li>
             </ul>
         </div>

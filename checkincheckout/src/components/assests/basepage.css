@@ -23,13 +23,19 @@
     margin: 0;
     padding: 0;
 }
-
+.base-page{
+    position:fixed;
+    top: 8px;
+    left: 0;
+}
 ul, li{
     text-decoration: none;
     list-style: none;
     padding: 0;
 }
 .fcont{
+    width: 100vw;
+    z-index: 5;
     display: flex;
     justify-content: space-between;
     margin: 0;

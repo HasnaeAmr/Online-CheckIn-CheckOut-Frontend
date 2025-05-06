@@ -6,10 +6,10 @@ import { faUser, faTrash, faPen , faBell, faUsers , faBed , faSignOut , faHouse,
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { EditUser } from "./editUser"
+import { EditChambre } from "./editChambre"
 
 
-export const UsersList = ({filters}) => {
+export const ChambresList = ({filters}) => {
   const { token } = useAuth();
   const [users, setUsers] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -20,7 +20,7 @@ export const UsersList = ({filters}) => {
     try {
       setLoading(true);
       setError(null);
-      const response = await axios.get('http://localhost:8080/api/user', {
+      const response = await axios.get('http://localhost:8080/api/chambres', {
         headers: {
           Authorization: `Bearer ${token}`,
           'Content-Type': 'application/json'
@@ -31,7 +31,7 @@ export const UsersList = ({filters}) => {
       setError(error.response?.data?.message || 
               (error.response?.status === 403 
                 ? 'You are not authorized to access this resource' 
-                : 'Failed to fetch users'));
+                : 'Failed to fetch chambres'));
     } finally {
       setLoading(false);
     }
@@ -43,12 +43,13 @@ export const UsersList = ({filters}) => {
 
   const handleDelete = async (userId) => {
     try {
-      await axios.delete(`http://localhost:8080/api/user/${userId}`, {
+      await axios.delete(`http://localhost:8080/api/chambres/${userId}`, {
         headers: {
-          Authorization: `Bearer ${token}`
+          Authorization: `Bearer ${token}`,
+          'Content-Type': 'application/json'
         }
       });
-      toast.success(`Le compte d'ID ${userId} a été supprimé avec succès!`, {
+      toast.success(`La chambre d'ID ${userId} a été supprimé avec succès!`, {
                           position: "bottom-right",
                           autoClose: 5000,
                           hideProgressBar: false,
@@ -63,36 +64,39 @@ export const UsersList = ({filters}) => {
                       
       fetchUsers(); 
     } catch (err) {
-      setError(err.response?.data?.message || 'Failed to delete user');
+      setError(err.response?.data?.message || 'Failed to delete chambre');
     }
   };
 
-  if (loading) return <div className="loading-spinner">Loading users...</div>;
+  if (loading) return <div className="loading-spinner">Loading chambres...</div>;
   if (error) return <div className="error-message">Error: {error}</div>;
 
   const filteredUsers = users.filter(user => {
     const searchNom = String(filters.nom || '').toLowerCase();
-    const searchPrenom = String(filters.prenom || '').toLowerCase();
-    const searchCin = String(filters.cin || '').toLowerCase();
-    const searchRole = String(filters.role || '');
+    const searchType = String(filters.type || '').toLowerCase();
+    const searchCapacite = String(filters.capacite || '');
+    const searchEtage = String(filters.etage || '');
+    const searchPrix = String(filters.prix || '');
     
     const userNom = String(user.nom || '').toLowerCase();
-    const userPrenom = String(user.prenom || '').toLowerCase();
-    const userCin = String(user.cin || '').toLowerCase();
-    const userRole = String(user.role || '').toLowerCase();
+    const userType = String(user.type || '').toLowerCase();
+    const userCapacite = String(user.capacite || '');
+    const userEtage = String(user.etage || '');
+    const userPrix = String(user.prix || '');
 
     const nomMatch = searchNom === '' || userNom.includes(searchNom);
-    const prenomMatch = searchPrenom === '' || userPrenom.includes(searchPrenom);
     
-    const cinMatch = searchCin === '' || userCin.includes(searchCin);
-    const roleMatch = searchRole === '' || userRole === searchRole;
+    const typeMatch = searchType === '' || userType.includes(searchType);
+    const capaciteMatch = searchCapacite === '' || userCapacite === searchCapacite;
+    const etageMatch = searchEtage === '' || userEtage === searchEtage;
+    const pricMatch = searchPrix === '' || userPrix === searchPrix;
 
-    return prenomMatch && nomMatch && cinMatch && roleMatch;
+    return nomMatch && typeMatch && capaciteMatch && etageMatch && pricMatch;
   });
-  const getRoleClass = (role) => {
-    switch(role) {
-      case 'ADMIN': return 'role-badge role-admin';
-      case 'CLIENT': return 'role-badge role-user';
+  const getRoleClass = (type) => {
+    switch(type) {
+      case 'Single': return 'role-badge role-admin';
+      case 'Double': return 'role-badge role-user';
       default: return 'role-badge role-other';
     }
   };
@@ -111,11 +115,11 @@ export const UsersList = ({filters}) => {
         <thead>
           <tr>
             <th>ID</th>
-            <th>CIN</th>
             <th>Nom</th>
-            <th>Prénom</th>
-            <th>Email</th>
-            <th>Role</th>
+            <th>Etage</th>
+            <th>Capacité</th>
+            <th>Type</th>
+            <th>Prix</th>
             <th>Actions</th>
           </tr>
         </thead>
@@ -123,13 +127,12 @@ export const UsersList = ({filters}) => {
           {filteredUsers.map(user => (
             <tr key={user.id}>
               <td>{user.id}</td>
-              <td>{user.cin}</td>
               <td>{user.nom}</td>
-              <td>{user.prenom}</td>
-              <td>{user.email}</td>
+              <td>{user.etage}</td>
+              <td>{user.capacite}</td>
               <td>
-              <span className={getRoleClass(user.role)}>
-  {user.role.toLowerCase()  
+              <span className={getRoleClass(user.type)}>
+  {user.type.toLowerCase()  
     .split(' ')             
     .map(word => 
       word.charAt(0).toUpperCase() + word.slice(1)  
@@ -137,6 +140,7 @@ export const UsersList = ({filters}) => {
     .join(' ')}           
 </span>
               </td>
+              <td>{user.prix}</td>
               <td>
                 <div className="action-buttons">
                 <button 
@@ -161,7 +165,7 @@ export const UsersList = ({filters}) => {
       </table>
       {editingUser && (
         <div className="modal-overlay">
-          <EditUser
+          <EditChambre
             user={editingUser}
             token={token}
             onSave={handleSaveSuccess}
@@ -173,4 +177,4 @@ export const UsersList = ({filters}) => {
   );
 };
 
-export default UsersList;
+export default ChambresList;

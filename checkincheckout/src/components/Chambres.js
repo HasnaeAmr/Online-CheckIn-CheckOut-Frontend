@@ -1,7 +1,7 @@
 import React,{ useState, useEffect } from "react";
 import { useAuth } from './AuthContext';
 import { useNavigate } from 'react-router-dom';
-import { UsersList } from "./usersList";
+import { ChambresList } from "./ChambresList";
 import './assests/content.css';
 import './assests/users.css'
 import AdminBasePage from "./adminBasePage";
@@ -9,21 +9,26 @@ import { faUser, faBell, faPlus , faUsers , faBed , faSignOut , faHouse, faSquar
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { FilterSection } from "./filterSection";
+import { FilterChambres } from "./filterChambres";
+import { AddChambre } from "./addChambre";
 
 
-const Users = () => {
+export const Chambres = () => {
 
     document.body.style = "background-color: #131313;";
     const { hasRole } = useAuth();
+    const [flag, setFlag] = useState(false);
 
   const [filters, setFilters] = useState({
     nom: '',
-    prenom: '',
-    cin: '',
-    role: ''
+    etage: '',
+    type: '',
+    capacite: '',
+    prix: ''
   });
- 
+  const handleSaveSuccess = () => {
+    setFlag(false);
+  };
     const navigate=useNavigate();
     
     if (!hasRole('admin')) {
@@ -36,21 +41,31 @@ const Users = () => {
         <div className="content">
           <div className="head">
         <h2>
-        <FontAwesomeIcon icon={faUsers} style={{ fontSize: '24px', color: '#007bff' }} /> Liste des utilisateurs
+        <FontAwesomeIcon icon={faUsers} style={{ fontSize: '24px', color: '#007bff' }} /> Liste des chambres
         </h2>
-        <div className="add-user" onClick={() => {navigate("/addUser")}}>
+        <div className="add-user" onClick={() => {setFlag(true)}}>
           <FontAwesomeIcon icon={faPlus}/>
         </div>
         </div>
-        <FilterSection
+        <FilterChambres
             filters={filters} 
             setFilters={setFilters} 
         />
         
-        <UsersList filters={filters} />
+        <ChambresList filters={filters} />
         </div>
-        
+{flag && (
+        <div className="modal-overlay">
+          <AddChambre
+            onSave={handleSaveSuccess}
+            onCancel={() => setFlag(null)}
+          />
+        </div>
+      )}        
         </>
-    );
+    
+
+);
+    
 }
-export default Users;
+export default Chambres;

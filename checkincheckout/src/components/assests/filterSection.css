@@ -1,0 +1,134 @@
+
+
+:root {
+    /* Base Colors */
+    --color-white: #FFFFFF;
+    --color-black: #2C3E50;
+    --color-dark-bg: #1A1A1A; /* For dark mode background */
+  
+    /* Primary Colors */
+    --color-blue: #4A89DC;
+    --color-green: #48CFAD;
+    --color-red: #E9573F;
+    --color-purple: #967ADC;
+  
+    /* Optional: Lighter/Darker variants */
+    --color-blue-light: rgba(74, 137, 220, 0.1);
+    --color-green-light: rgba(72, 207, 173, 0.1);
+    --color-red-light: rgba(233, 87, 63, 0.1);
+    --color-purple-light: rgba(150, 122, 220, 0.1);
+  }
+
+  
+  
+.filter-container {
+    margin-top: 30px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    padding: 1.5rem;
+    background-color: #dfdfdf; 
+    border-radius: 20px;
+    margin-bottom: 2rem;
+    box-shadow: 0 2px 15px rgba(150, 122, 220, 0.1);
+    border: 1px solid #E9E0FF; 
+}
+
+.filter {
+    flex: 1;
+    min-width: 200px;
+}
+
+.filter label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    color: var(--color-dark-bg); 
+    font-size: 0.85rem;
+    letter-spacing: 0.3px;
+}
+
+.search-input, .search-select {
+    position: relative;
+}
+
+.search-input input {
+    width: 100%;
+    padding: 0.75rem 1rem 0.75rem 2.5rem;
+    background-color: white;
+    border: 1px solid #D9D0FF;
+    border-radius: 30px;
+    color: #4A3C6B;
+    font-size: 0.9rem;
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.search-input input:focus {
+    outline: none;
+    border-color: var(--color-purple);
+    box-shadow: 0 0 0 3px rgba(150, 122, 220, 0.2);
+}
+
+.search-input .search-icon {
+    position: absolute;
+    left: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #967ADC; 
+    font-size: 0.9rem;
+}
+
+.search-select select {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    background-color: white;
+    border: 1px solid #D9D0FF;
+    border-radius: 30px;
+    color: #4A3C6B;
+    font-size: 0.9rem;
+    appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23967ADC'%3e%3cpath d='M7 10l5 5 5-5z'/%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right 1rem center;
+    background-size: 1rem;
+    cursor: pointer;
+}
+
+.search-select select:focus {
+    outline: none;
+    border-color: var(--color-purple);
+    box-shadow: 0 0 0 3px rgba(150, 122, 220, 0.2);
+}
+
+.search-input input::placeholder {
+    color: #B8ABD6;
+    opacity: 1;
+}
+
+.search-input:hover input {
+    border-color: #C3B3FF;
+}
+
+.search-select:hover select {
+    border-color: #C3B3FF;
+}
+
+@media (max-width: 768px) {
+    .filter-container {
+        padding: 1.2rem;
+        gap: 1.2rem;
+    }
+    
+    .filter {
+        min-width: 100%;
+    }
+    
+    .search-input input {
+        padding: 0.65rem 0.9rem 0.65rem 2.3rem;
+    }
+}
+.search-select select option {
+    padding: 0.5rem;
+    background: white;
+    color: #4A3C6B;
+}

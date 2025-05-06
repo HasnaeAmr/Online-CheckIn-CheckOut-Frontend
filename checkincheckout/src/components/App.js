@@ -10,6 +10,8 @@ import Users from "./Users";
 import AddUser from "./addUser";
 import BasePage from "./BasePage"
 import { UserProfile } from "./UserProfile";
+import { EditUser } from "./editUser";
+import { Chambres } from "./Chambres";
 
 function App() {
   return (
@@ -26,6 +28,8 @@ function App() {
           <Route path="/addUser" element={<AddUser />}/>
           <Route path="/BasePage" element={<BasePage />}/>
           <Route path="/UserProfile" element={<UserProfile />}/>
+          <Route path="/editUser" element={<EditUser />}/>
+          <Route path="/Chambres" element={<Chambres />}/>
         </Routes>
       </div>
     </Router>
