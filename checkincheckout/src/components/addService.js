@@ -7,31 +7,18 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import './assests/editUser.css'
 
-export function EditChambre({user, onCancel, onSave }) {
+export function AddService({onCancel, onSave }) {
     const { token } = useAuth();
     const navigate = useNavigate();
     const { hasRole } = useAuth();
     const [formData, setFormData] = useState({
-        id: user?.id,
-        etage: user?.etage || "",
-        nom: user?.nom || "",
-        capacite: user?.capacite || "",
-        type: user?.type || "",
-        prix: user?.prix || "",
-        password: ""
+        id: "",
+        nom: "",
+        description:"",
+        prix: "",
+        
     });
-    useEffect(() => {
-        if (user) {
-            setFormData({
-                id: user.id || "",
-                nom: user.nom || "",
-                etage: user.etage || "",
-                prix: user.prix || "",
-                capacite: user.capacite || "",
-                type: user.type || "",
-            });
-        }
-    }, [user]);
+   
         if (!hasRole('admin')) {
             navigate("/unauthorized");
         }
@@ -46,7 +33,7 @@ export function EditChambre({user, onCancel, onSave }) {
     const handleSignup = async (e) => {
         e.preventDefault();
         
-        if (!formData.nom || !formData.etage || !formData.capacite || !formData.type || !formData.prix) {
+        if (!formData.nom || !formData.description || !formData.prix) {
             
             toast.error('Tous les champs sont obligatoires!', {
                 position: "top-center",
@@ -61,22 +48,12 @@ export function EditChambre({user, onCancel, onSave }) {
         }
 
         const handleCancel = () => {
-            if (user) {
-              setFormData({
-                id: user.id,
-                nom: user.nom,
-                etage: user.etage,
-                type: user.type,
-                capacite: user.capacite,
-                prix: user.prix,
-              });
-            }
             onCancel();
           };
 
         try {
-            const response = await axios.put(
-                `http://localhost:8080/api/chambres/${formData.id}`,
+            const response = await axios.post(
+                `http://localhost:8080/api/services`,
                 formData,
                 {
                   headers: {
@@ -87,7 +64,7 @@ export function EditChambre({user, onCancel, onSave }) {
               ); 
                         if (response.status === 200 || response.status === 201) {
                             console.log('Showing toast for success'); 
-                toast.success(`Le compte a été modifié avec succès!`, {
+                toast.success(`Le service ${formData.nom} a été ajouté avec succès!`, {
                     position: "top-center",
                     autoClose: 5000,
                     hideProgressBar: false,
@@ -101,14 +78,13 @@ export function EditChambre({user, onCancel, onSave }) {
                 setTimeout(() => {
                     setFormData({
                         nom: "",
-                        etage: "",
-                        type: "",
-                        capacite: "",
+                        description: "",
                         prix: "",
-                        id: "",
+                        
                     });
                 onSave();
-            }, 4000);
+            }, 3000);
+            setTimeout(() => navigate("/Services"), 1);
             }
         } catch (err) {
             const errorMessage = err.response?.data?.message || "Une erreur est survenue durant l'enregistrement!";
@@ -128,7 +104,7 @@ export function EditChambre({user, onCancel, onSave }) {
         <div className="container">
     <ToastContainer />
     <div className="header">
-        <div className="text">Modification de la Chambre</div>
+        <div className="text">Ajout d'un service</div>
         <div className="underline"></div>
     </div>
     
@@ -146,50 +122,15 @@ export function EditChambre({user, onCancel, onSave }) {
         </div>
         <div className='input-field'>
             <input 
-                type="number" 
-                placeholder='Etage' 
+                type="text" 
+                placeholder='Description' 
                 onChange={handleChange}
-                value={formData.etage}
-                name="nom"
+                value={formData.description}
+                name="description"
                 required
                 className="input"
             />
         </div>
-        <div className='input-field'>
-            <input 
-                type="number" 
-                placeholder='Capacité' 
-                onChange={handleChange}
-                value={formData.capacite}
-                name="capacite"
-                required
-                className="input"
-            />
-        </div>
-        
-        <div className='role-selection'>
-            <label className="role-label">Type:</label>
-            <div className="radio-options">
-                {['Single', 'Double', 'Family'].map((type) => (
-                    <label key={type} className="radio-option">
-                        <input
-                            type="radio"
-                            name="type"
-                            value={type}
-                            checked={formData.type === type}
-                            onChange={handleChange}
-                            required
-                            className="radio-input"
-                        />
-                        <span className="radio-custom"></span>
-                        <span className="radio-label">
-                            {type}
-                        </span>
-                    </label>
-                ))}
-            </div>
-        </div>
-        
         <div className='input-field'>
             <input 
                 type="number" 
@@ -205,7 +146,7 @@ export function EditChambre({user, onCancel, onSave }) {
     </div>
     
     <div className="submit-container">
-        <button className="submit-btn" onClick={handleSignup}>Modifier</button>
+        <button className="submit-btn" onClick={handleSignup}>Ajouter</button>
         <button 
                         type="button" 
                         className="cancel-btn"

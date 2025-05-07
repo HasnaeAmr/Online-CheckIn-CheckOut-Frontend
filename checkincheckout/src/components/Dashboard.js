@@ -11,10 +11,6 @@ const navigate=useNavigate()
   }
   return (
     <>
-    <h1>Welcome</h1>
-    <button onClick={handlelogout}>
-      log out
-    </button>
     <UserProfile/>
     </>
     

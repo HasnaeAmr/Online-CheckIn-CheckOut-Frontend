@@ -21,7 +21,7 @@ const navigate=useNavigate()
             <img src="../logo.svg"/>
         </div>
         <div className="right">
-                    <p><FontAwesomeIcon icon={faUser} /></p>
+                    <p onClick={() => navigate("/UserProfile")}><FontAwesomeIcon icon={faUser} /></p>
                     <p><FontAwesomeIcon icon={faBell} /></p>
         </div>
         
@@ -35,7 +35,7 @@ const navigate=useNavigate()
                     navigate("/users")
                 }}><FontAwesomeIcon className='icon' icon={faUsers} /></li>
                 <li onClick={() => navigate("/Chambres")}><FontAwesomeIcon className='icon' icon={faBed} /></li>
-                <li><FontAwesomeIcon className='icon' icon={faBellConcierge} /></li>
+                <li onClick={() => navigate("/Services")}><FontAwesomeIcon className='icon' icon={faBellConcierge} /></li>
             </ul>
         </div>
         <div className="buttom">

@@ -6,10 +6,10 @@ import { faUser, faTrash, faPen , faBell, faUsers , faBed , faSignOut , faHouse,
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { EditUser } from "./editUser"
+import { EditService } from "./editService"
 
 
-export const UsersList = ({filters}) => {
+export const ServicesList = ({filters}) => {
   const { token } = useAuth();
   const [users, setUsers] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -20,7 +20,7 @@ export const UsersList = ({filters}) => {
     try {
       setLoading(true);
       setError(null);
-      const response = await axios.get('http://localhost:8080/api/user', {
+      const response = await axios.get('http://localhost:8080/api/services', {
         headers: {
           Authorization: `Bearer ${token}`,
           'Content-Type': 'application/json'
@@ -31,7 +31,7 @@ export const UsersList = ({filters}) => {
       setError(error.response?.data?.message || 
               (error.response?.status === 403 
                 ? 'You are not authorized to access this resource' 
-                : 'Failed to fetch users'));
+                : 'Failed to fetch Services'));
     } finally {
       setLoading(false);
     }
@@ -43,12 +43,12 @@ export const UsersList = ({filters}) => {
 
   const handleDelete = async (userId) => {
     try {
-      await axios.delete(`http://localhost:8080/api/user/${userId}`, {
+      await axios.delete(`http://localhost:8080/api/services/${userId}`, {
         headers: {
           Authorization: `Bearer ${token}`
         }
       });
-      toast.success(`Le compte d'ID ${userId} a été supprimé avec succès!`, {
+      toast.success(`Le service d'ID ${userId} a été supprimé avec succès!`, {
                           position: "bottom-right",
                           autoClose: 5000,
                           hideProgressBar: false,
@@ -63,40 +63,29 @@ export const UsersList = ({filters}) => {
                       
       fetchUsers(); 
     } catch (err) {
-      setError(err.response?.data?.message || 'Failed to delete user');
+      setError(err.response?.data?.message || 'Failed to delete Service');
     }
   };
 
-  if (loading) return <div className="loading-spinner">Loading users...</div>;
+  if (loading) return <div className="loading-spinner">Loading services...</div>;
   if (error) return <div className="error-message">Error: {error}</div>;
 
   const filteredUsers = users.filter(user => {
     const searchNom = String(filters.nom || '').toLowerCase();
-    const searchPrenom = String(filters.prenom || '').toLowerCase();
-    const searchCin = String(filters.cin || '');
-    const searchRole = String(filters.role || '').toLowerCase();
+    const searchDescription = String(filters.description || '').toLowerCase();
+    const searchPrix = String(filters.prix || "");
     
     const userNom = String(user.nom || '').toLowerCase();
-    const userPrenom = String(user.prenom || '').toLowerCase();
-    const userCin = String(user.cin || '');
-    const userRole = String(user.role || '').toLowerCase();
+    const userDescription = String(user.description || '').toLowerCase();
+    const userPrix = String(user.prix || '').toLowerCase();
 
     const nomMatch = searchNom === '' || userNom.includes(searchNom);
-    const prenomMatch = searchPrenom === '' || userPrenom.includes(searchPrenom);
+    const descriptionMatch = searchDescription === '' || userDescription.includes(searchDescription);
     
-    const cinMatch = searchCin === '' || userCin.includes(searchCin);
-    const roleMatch = searchRole === '' || userRole === searchRole;
+    const prixMatch = searchPrix === '' || userPrix == searchPrix;
 
-    return prenomMatch && nomMatch && cinMatch && roleMatch;
+    return nomMatch && descriptionMatch && prixMatch ;
   });
-  const getRoleClass = (role) => {
-    switch(role) {
-      case 'ADMIN': return 'role-badge role-admin';
-      case 'CLIENT': return 'role-badge role-user';
-      default: return 'role-badge role-other';
-    }
-  };
-
   const handleEditClick = (user) => {
     setEditingUser(user);
   };
@@ -111,11 +100,9 @@ export const UsersList = ({filters}) => {
         <thead>
           <tr>
             <th>ID</th>
-            <th>CIN</th>
             <th>Nom</th>
-            <th>Prénom</th>
-            <th>Email</th>
-            <th>Role</th>
+            <th>Description</th>
+            <th>Prix</th>
             <th>Actions</th>
           </tr>
         </thead>
@@ -123,20 +110,10 @@ export const UsersList = ({filters}) => {
           {filteredUsers.map(user => (
             <tr key={user.id}>
               <td>{user.id}</td>
-              <td>{user.cin}</td>
               <td>{user.nom}</td>
-              <td>{user.prenom}</td>
-              <td>{user.email}</td>
-              <td>
-              <span className={getRoleClass(user.role)}>
-  {user.role.toLowerCase()  
-    .split(' ')             
-    .map(word => 
-      word.charAt(0).toUpperCase() + word.slice(1)  
-    )
-    .join(' ')}           
-</span>
-              </td>
+              <td>{user.description}</td>
+              <td>{user.prix} DH</td>
+             
               <td>
                 <div className="action-buttons">
                 <button 
@@ -161,7 +138,7 @@ export const UsersList = ({filters}) => {
       </table>
       {editingUser && (
         <div className="modal-overlay">
-          <EditUser
+          <EditService
             user={editingUser}
             token={token}
             onSave={handleSaveSuccess}
@@ -173,4 +150,4 @@ export const UsersList = ({filters}) => {
   );
 };
 
-export default UsersList;
+export default ServicesList;

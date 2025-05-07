@@ -35,7 +35,7 @@
   .users-table thead tr {
     background-color: var(--color-dark-bg);
     color: white;
-    text-align: left;
+    text-align: center;
   }
   
   .users-table th {
@@ -57,6 +57,7 @@
   }
   
   .users-table tbody td {
+    text-align: center;
     color: #333;
     font-weight: 500;
   }

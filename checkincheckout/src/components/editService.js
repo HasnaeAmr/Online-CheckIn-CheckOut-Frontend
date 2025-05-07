@@ -7,28 +7,24 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import './assests/editUser.css'
 
-export function EditChambre({user, onCancel, onSave }) {
+export function EditService({user, onCancel, onSave }) {
     const { token } = useAuth();
     const navigate = useNavigate();
     const { hasRole } = useAuth();
     const [formData, setFormData] = useState({
         id: user?.id,
-        etage: user?.etage || "",
+        description: user?.description || "",
         nom: user?.nom || "",
-        capacite: user?.capacite || "",
-        type: user?.type || "",
         prix: user?.prix || "",
-        password: ""
     });
     useEffect(() => {
         if (user) {
             setFormData({
                 id: user.id || "",
                 nom: user.nom || "",
-                etage: user.etage || "",
+                description: user.description || "",
                 prix: user.prix || "",
-                capacite: user.capacite || "",
-                type: user.type || "",
+               
             });
         }
     }, [user]);
@@ -46,7 +42,7 @@ export function EditChambre({user, onCancel, onSave }) {
     const handleSignup = async (e) => {
         e.preventDefault();
         
-        if (!formData.nom || !formData.etage || !formData.capacite || !formData.type || !formData.prix) {
+        if (!formData.nom || !formData.description || !formData.prix) {
             
             toast.error('Tous les champs sont obligatoires!', {
                 position: "top-center",
@@ -65,9 +61,7 @@ export function EditChambre({user, onCancel, onSave }) {
               setFormData({
                 id: user.id,
                 nom: user.nom,
-                etage: user.etage,
-                type: user.type,
-                capacite: user.capacite,
+                description: user.description,
                 prix: user.prix,
               });
             }
@@ -76,7 +70,7 @@ export function EditChambre({user, onCancel, onSave }) {
 
         try {
             const response = await axios.put(
-                `http://localhost:8080/api/chambres/${formData.id}`,
+                `http://localhost:8080/api/services/${formData.id}`,
                 formData,
                 {
                   headers: {
@@ -146,48 +140,14 @@ export function EditChambre({user, onCancel, onSave }) {
         </div>
         <div className='input-field'>
             <input 
-                type="number" 
-                placeholder='Etage' 
+                type="text" 
+                placeholder='Description' 
                 onChange={handleChange}
-                value={formData.etage}
-                name="nom"
+                value={formData.description}
+                name="description"
                 required
                 className="input"
             />
-        </div>
-        <div className='input-field'>
-            <input 
-                type="number" 
-                placeholder='Capacité' 
-                onChange={handleChange}
-                value={formData.capacite}
-                name="capacite"
-                required
-                className="input"
-            />
-        </div>
-        
-        <div className='role-selection'>
-            <label className="role-label">Type:</label>
-            <div className="radio-options">
-                {['Single', 'Double', 'Family'].map((type) => (
-                    <label key={type} className="radio-option">
-                        <input
-                            type="radio"
-                            name="type"
-                            value={type}
-                            checked={formData.type === type}
-                            onChange={handleChange}
-                            required
-                            className="radio-input"
-                        />
-                        <span className="radio-custom"></span>
-                        <span className="radio-label">
-                            {type}
-                        </span>
-                    </label>
-                ))}
-            </div>
         </div>
         
         <div className='input-field'>
@@ -216,3 +176,6 @@ export function EditChambre({user, onCancel, onSave }) {
 </div>
     );
 }
+
+
+export default EditService;

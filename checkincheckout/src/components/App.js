@@ -9,9 +9,10 @@ import Unauthorized from "./unauthorized";
 import Users from "./Users";
 import AddUser from "./addUser";
 import BasePage from "./BasePage"
-import { UserProfile } from "./UserProfile";
 import { EditUser } from "./editUser";
 import { Chambres } from "./Chambres";
+import { Services } from "./Services";
+import { UserProfile } from "./UserProfile";
 
 function App() {
   return (
@@ -30,6 +31,7 @@ function App() {
           <Route path="/UserProfile" element={<UserProfile />}/>
           <Route path="/editUser" element={<EditUser />}/>
           <Route path="/Chambres" element={<Chambres />}/>
+          <Route path="/Services" element={<Services />}/>
         </Routes>
       </div>
     </Router>
