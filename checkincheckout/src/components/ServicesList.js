@@ -128,7 +128,8 @@ export const ServicesList = ({filters}) => {
                   className="delete-btn"
                   onClick={() => handleDelete(user.id)}
                 >
-                    <FontAwesomeIcon icon={faTrash} />
+                   
+                   
                   </button>
                 </div>
               </td>

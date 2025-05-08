@@ -29,7 +29,7 @@ const navigate=useNavigate()
         <div className="scont">
         <div className="nav">
             <ul className="list">
-                <li><FontAwesomeIcon className='icon' icon={faHouse} /></li>
+                <li onClick={() => navigate("/dashboard")}><FontAwesomeIcon className='icon' icon={faHouse} /></li>
                 <li><FontAwesomeIcon className='icon' icon={faSquareH} /></li>
                 <li  onClick = { () => {
                     navigate("/users")

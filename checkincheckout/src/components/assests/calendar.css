@@ -1,0 +1,92 @@
+:root {
+    /* Base Colors */
+    --color-white: #FFFFFF;
+    --color-black: #2C3E50;
+    --color-dark-bg: #1A1A1A; /* For dark mode background */
+  
+    /* Primary Colors */
+    --color-blue: #4A89DC;
+    --color-green: #48CFAD;
+    --color-red: #E9573F;
+    --color-purple: #967ADC;
+  
+    /* Optional: Lighter/Darker variants */
+    --color-blue-light: rgba(74, 137, 220, 0.1);
+    --color-green-light: rgba(72, 207, 173, 0.1);
+    --color-red-light: rgba(233, 87, 63, 0.1);
+    --color-purple-light: rgba(150, 122, 220, 0.1);
+}
+  .dashboard-calendar {
+    width: 100%;
+    font-family: 'Segoe UI', sans-serif;
+  }
+  
+  .calendar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+  }
+  
+  .calendar-header h3 {
+    margin: 0;
+    color: var(--color-dark-bg);
+    font-size: 1.2rem;
+  }
+  
+  .calendar-header button {
+    background: none;
+    
+    border: none;
+    cursor: pointer;
+    color: #6A0DAD;
+    font-size: 1rem;
+  }
+  .calendar-header button path{
+    color: var(--color-purple);
+  }
+  .calendar-weekdays {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    text-align: center;
+    margin-bottom: 10px;
+    color: #666;
+    font-weight: 500;
+    color: var(--color-dark-bg);
+  }
+  
+  .calendar-days {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 8px;
+    color: var(--color-dark-bg);
+  }
+  
+  .calendar-day {
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.2s;
+    color: var(--color-dark-bg);
+  }
+  
+  .weekday{
+    color: var(--color-dark-bg);
+    background-color: rgb(219, 219, 219);
+  }
+  .calendar-day:hover:not(.empty) {
+    background-color: #f0e6ff;
+  }
+  
+  .calendar-day.today {
+    background-color: var(--color-purple);
+    color: white;
+    font-weight: bold;
+  }
+  
+  .calendar-day.empty {
+    visibility: hidden;
+  }

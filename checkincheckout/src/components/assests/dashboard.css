@@ -1,0 +1,250 @@
+
+:root {
+    /* Base Colors */
+    --color-white: #FFFFFF;
+    --color-black: #2C3E50;
+    --color-dark-bg: #1A1A1A; /* For dark mode background */
+  
+    /* Primary Colors */
+    --color-blue: #4A89DC;
+    --color-green: #48CFAD;
+    --color-red: #E9573F;
+    --color-purple: #967ADC;
+  
+    /* Optional: Lighter/Darker variants */
+    --color-blue-light: rgba(74, 137, 220, 0.1);
+    --color-green-light: rgba(72, 207, 173, 0.1);
+    --color-red-light: rgba(233, 87, 63, 0.1);
+    --color-purple-light: rgba(150, 122, 220, 0.1);
+}
+
+.statisctics-container{
+    padding: 15px;
+    width: 95%;
+    height: 200px;
+    margin: auto;
+    height: 150px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.statisctics-container .card{
+    width: 32%;
+    padding: 5px;
+    border-radius: 10px;
+    height: 190px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    color: var(--color-dark-bg);
+    border: none;
+    background-color: rgb(219, 219, 219);
+}
+.statisctics-container .fcontainer{
+    width: 150px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 45px;
+    margin-bottom: 12px;
+}
+.statisctics-container .scontainer{
+    width: 75%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.statisctics-container h4{
+    color: var(--color-white);
+}
+.fcontainer .icon {
+    width: 45px;
+    height: 45px;
+    padding: 3px;
+}
+.fcontainer .icon path{
+    color: var(--color-dark-bg);
+}
+/*.card:first-child{
+    background: linear-gradient(135deg, 
+   #9b3bf5 0%,    
+    #5e019c 60%
+  );
+}*/
+
+.card h4{
+    color: var(--color-dark-bg);
+}
+.fcontainer .number{
+    font-weight: bold;
+    color: var(--color-dark-bg);
+}
+.scontainer{
+    margin-top: 13px;
+}
+.scontainer p{
+    font-weight: 600;
+    font-size: 12px;
+    padding: 3px;
+    width: 25%;
+    border: 1px solid gray;
+    border-radius: 20px;
+    text-align: center;
+    color: var(--color-dark-bg);
+}
+.news{
+    color: black;
+    width: 95%;
+    padding: 10px;
+    margin: auto;
+    margin-top: 25px;
+    display: flex;
+    justify-content: space-between;
+    align-items: start;
+}
+.ucontainer{
+    color: var(--color-dark-bg);
+    width: 55%;
+}
+.updates{
+    display: flex;
+    align-items: start;
+    padding: 20px;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    width: 43%;
+    color: var(--color-dark-bg);
+    
+}
+.ucontainer {
+    padding: 20px;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+  }
+  
+  .users {
+    margin-top: 15px;
+    width: 100%;
+    border-collapse: collapse;
+    background-color: white;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+    border-radius: 6px;
+    overflow: hidden;
+  }
+  .title{
+    margin-top: -15px;
+    margin-bottom: 10px;
+  }
+  .dash-text{
+    color: #233;
+    margin-bottom: 35px;
+    font-size: 15px;
+  }
+  .users thead tr {
+    background-color: var(--color-dark-bg);
+    color: white;
+    height: 20px;
+    text-align: center;
+  }
+  
+  .users th {
+    padding: 8px;
+    font-weight: 500;
+    color: var(--color-dark-bg);
+    background-color: rgb(219, 219, 219);
+  }
+  
+  .users tbody tr {
+    border-bottom: 1px solid #eee;
+  }
+  
+  
+  .users td {
+    padding: 12px;
+    
+    font-size: 15px;
+  }
+  
+  
+  .users tbody td {
+    text-align: center;
+    color: rgb(75, 75, 75);
+    font-weight: 400;
+  }
+  
+  .role-badge {
+    display: inline-block;
+    padding: 4px 8px;
+    border-radius: 15px;
+    font-size: 0.8rem;
+    width: 70px;
+    text-align: center;
+  }
+  
+  
+.role-badge {
+    display: inline-block;
+    padding: 6px 12px;
+    border-radius: 16px; 
+    font-size: 0.75rem;
+    font-weight: 700; 
+    letter-spacing: 0.5px;
+    text-transform: capitalize;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+    transition: all 0.2s ease;
+  }
+
+  .role-admin {
+    background-color: rgba(150, 122, 220, 0.12);
+    color: var(--color-purple);
+  }
+  
+  .role-user {
+    background-color: rgba(33, 150, 243, 0.12); 
+    color: var(--color-blue);
+  }
+  
+  .role-other {
+    background-color: rgba(76, 175, 80, 0.12); 
+    color: var(--color-green);
+    
+    width: 100px;
+    
+  }
+  
+  .role-badge:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  }
+
+  .users-table thead{
+    background-color: gray;
+  }
+
+  .users-icon{
+    margin-right: 6px;
+  }
+  .users-icon path{
+    fill: var(--color-dark-bg);
+  }
+  
+.user-icon path{
+    fill: var(--color-purple);
+}
+
+
+
+.client path{
+    color: var(--color-blue);
+}
+
+.admin path{
+    color: var(--color-purple);
+}
+
+.recep path {
+    color: var(--color-green);
+}
