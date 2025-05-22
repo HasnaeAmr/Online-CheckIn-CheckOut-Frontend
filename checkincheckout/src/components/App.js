@@ -13,6 +13,9 @@ import { EditUser } from "./editUser";
 import { Chambres } from "./Chambres";
 import { Services } from "./Services";
 import { UserProfile } from "./UserProfile";
+import { UserServices } from "./userServices";
+import { PaymentSuccess }  from "./payment-success"
+
 
 function App() {
   return (
@@ -32,6 +35,8 @@ function App() {
           <Route path="/editUser" element={<EditUser />}/>
           <Route path="/Chambres" element={<Chambres />}/>
           <Route path="/Services" element={<Services />}/>
+          <Route path="/Services-sejour" element= {<UserServices/>}/>
+          <Route path="/checkout-payment-success" element= {<PaymentSuccess/>}/>
         </Routes>
       </div>
     </Router>
