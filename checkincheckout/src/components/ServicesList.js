@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useAuth } from './AuthContext';
 import './assests/usersList.css'
-import { faUser, faTrash, faPen , faBell, faUsers , faBed , faSignOut , faHouse, faSquareH, faList, faDoorOpen, faDoorClosed , faBellConcierge, faListNumeric } from '@fortawesome/free-solid-svg-icons'
+import { faUser, faTrash, faPen , faBell, faUsers , faBed , faSignOut , faHouse, faSquareH, faList, faDoorOpen, faDoorClosed , faBellConcierge, faListNumeric, faT } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -128,7 +128,9 @@ export const ServicesList = ({filters}) => {
                   className="delete-btn"
                   onClick={() => handleDelete(user.id)}
                 >
-                   
+                   <FontAwesomeIcon 
+  icon={faTrash}
+/>
                    
                   </button>
                 </div>

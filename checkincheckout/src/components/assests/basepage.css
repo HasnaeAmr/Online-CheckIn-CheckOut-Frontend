@@ -55,7 +55,7 @@ ul, li{
    justify-content: space-between;
    align-items: center;
    width: 50px;
-   height: 540px;
+   height: 600px;
 }
 .list{
     margin: 0;
@@ -105,7 +105,9 @@ ul, li{
     height: 15%;
     
 }
-
+.content{
+    height: 100vh;
+}
 .buttom ul{
     height: 100%;
     margin-left: -18px;
@@ -133,11 +135,10 @@ ul, li{
     border: 1px solid var(--color-purple);
 }
 .right{
-    width: 7%;
+    width: 5%;
 }
 
 .right p{
-    border: 1px solid var(--color-white);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -147,5 +148,6 @@ ul, li{
     border-radius: 50%;
     font-size: 15px;
     cursor: pointer;
+    background-color: rgba(209, 208, 121, 0.6);
     transition: all 0.3s ease;
 }

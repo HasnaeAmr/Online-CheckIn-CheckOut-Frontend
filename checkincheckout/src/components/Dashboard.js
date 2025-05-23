@@ -4,6 +4,9 @@ import { useAuth } from './AuthContext';
 import { useNavigate } from 'react-router-dom';
 import { BasePage } from './adminBasePage';
 import { DashboardCalendar } from './DashBoardCalendar'
+import { RoomChart } from './rommChart'
+import { ReservationChart } from './reservationChart'
+import { CheckInOutChart } from './checkInOut'
 import "./assests/dashboard.css"
 import { faUser, faTrash, faUserShield , faPen , faUserTie ,  faBell, faUsers , faBed , faSignOut , faHouse, faSquareH, faList, faDoorOpen, faDoorClosed , faBellConcierge, faListNumeric, faSquare } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -109,8 +112,10 @@ const fetchChambres = async () => {
 useEffect(() => {
     fetchChambres();
   }, [token]); 
-
-
+  const yearlyStats = {
+    checkIns: [45, 60, 75, 82, 90, 120, 150, 140, 110, 95, 70, 50],
+    checkOuts: [40, 55, 70, 80, 85, 115, 145, 135, 105, 90, 65, 45]
+  };
   return (
     <>
     <BasePage/>
@@ -119,53 +124,20 @@ useEffect(() => {
     <p className='dash-text'>Gérez facilement vos données, suivez vos performances et accédez rapidement à toutes vos fonctionnalités essentielles.</p>
 
       <div className="statisctics-container">
-        <div className="card">
+        <div className="card card1">
+          
         <h4 className='tit'>Réservations</h4>
-            <div className="fcontainer" onClick={() => navigate('./reservations')}>
-              <div className="icon">
-                   <FontAwesomeIcon className="icon" icon={faSquareH} />
-              </div>
-              <div className="number">
-                  14
-              </div>
-            </div>
-            <div className="scontainer">
-              <p>En Attente</p>
-              <p>Confirmé</p>
-              <p>Terminé</p>
-            </div>
+        <ReservationChart reservations={chambres}/>
+          
         </div>
         <div className="card" onClick={() => navigate('../Services')}>
-        <h4>Services</h4>
-            <div className="fcontainer">
-              <div className="icon">
-                   <FontAwesomeIcon className="icon" icon={faBellConcierge} />
-              </div>
-              <div className="number">
-                  {services.length}
-              </div>
-            </div>
-            <div className="scontainer">
-              <p>Sport</p>
-              <p>Déjeuné</p>
-              <p>Piscine</p>
-            </div>
+        <h4>Check-In & Check-Out</h4>
+        <CheckInOutChart className="graph" yearlyData={yearlyStats} />
         </div>
         <div className="card" onClick={() => navigate('../chambres')}>
         <h4>Chambres</h4>
-            <div className="fcontainer">
-              <div className="icon">
-                   <FontAwesomeIcon className="icon" icon={faBed} />
-              </div>
-              <div className="number">
-                  {chambres.length}
-              </div>
-            </div>
-            <div className="scontainer">
-              <p>Single</p>
-              <p>Double</p>
-              <p>Familière</p>
-            </div>
+        <RoomChart chambres={chambres} />
+            
         </div>
       </div>
       <div className="news">

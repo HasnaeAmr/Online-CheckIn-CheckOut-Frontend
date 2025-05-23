@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-
+import { BasePage } from "./adminBasePage"
 export default function AddUser() {
     const navigate = useNavigate();
     const { hasRole } = useAuth();
@@ -83,7 +83,7 @@ export default function AddUser() {
                     confirmerPassword: ""
                 });
                 
-                setTimeout(() => navigate("/users"), 1000);
+                setTimeout(() => navigate("/users"), 5000);
             }
         } catch (err) {
             const errorMessage = err.response?.data?.message || "Une erreur est survenue durant l'enregistrement!";
@@ -100,6 +100,9 @@ export default function AddUser() {
     };
 
     return (
+        <>
+        <BasePage/>
+        <div className='content'>
         <div className="container">
     <ToastContainer />
     <div className="header">
@@ -202,7 +205,7 @@ export default function AddUser() {
     
     <div className="submit-container">
         <button className="submit-btn" onClick={handleSignup}>Ajouter</button>
-    </div>
-</div>
+    </div></div>
+</div></>
     );
 }

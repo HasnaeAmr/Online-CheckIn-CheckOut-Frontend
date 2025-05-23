@@ -4,6 +4,7 @@ import { useAuth } from './AuthContext';
 import { useNavigate, useParams } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import "./assests/userServicesList.css"
 import { BasePage } from "./BasePage"
 export const UserServices = () => {
   const { token, user } = useAuth();
@@ -99,6 +100,30 @@ export const UserServices = () => {
   if (loading) return <div className="text-center mt-5">Chargement en cours...</div>;
   if (error) return <div className="alert alert-danger mt-5">{error}</div>;
 
+
+  const handlePayPalPayment = async () => {
+    try {
+    const response = await axios.get('http://localhost:8080/api/checkout/paypal-payment/1',
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+          'Content-Type': 'application/json'
+        }
+      }
+    ); 
+  
+    if (response.data.redirectUrl) {
+      window.location.href = response.data.redirectUrl;
+    } else {
+      console.error('No redirect URL received from server');
+      
+      alert('Payment initialization failed. Please try again.');
+    }
+      
+    } catch (error) {
+      console.error('Payment error:', error);
+    }
+  };
   return (
     <>
         <BasePage/>
@@ -136,17 +161,23 @@ export const UserServices = () => {
                 </tfoot>
               </table>
               
-              <div className="d-flex justify-content-end mt-4">
+              <div className="choix-section">
                 <button 
                   onClick={handlePayment}
-                  className="btn btn-primary btn-lg"
+                  className="choix"
                 >
-                  Payer maintenant
+                  Payer en Stripe
+                </button>
+                <button 
+                  onClick={handlePayPalPayment}
+                  className="choix"
+                >
+                  Payer en Paypal
                 </button>
               </div>
             </>
           ) : (
-            <div className="alert alert-info">
+            <div className="alert alert-info aucun">
               Aucun service consommé pendant ce séjour
             </div>
           )}

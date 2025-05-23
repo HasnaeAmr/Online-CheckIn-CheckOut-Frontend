@@ -2,7 +2,6 @@ import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Header from "./Header";
 import WelcomeContent from "./WelcomeContent";
-import LogInSignup from "./LogInSignup";
 import Dashboard from "./Dashboard";
 import RegistrationSuccess from "./RegistrationSuccess";
 import Unauthorized from "./unauthorized";
@@ -15,6 +14,8 @@ import { Services } from "./Services";
 import { UserProfile } from "./UserProfile";
 import { UserServices } from "./userServices";
 import { PaymentSuccess }  from "./payment-success"
+import { SignUp } from "./signUp"
+import { LogIn } from "./login";
 
 
 function App() {
@@ -24,7 +25,8 @@ function App() {
         <Header pageTitle="" />
         <Routes>
           <Route path="/" element={<WelcomeContent />} />
-          <Route path="/login" element={<LogInSignup action="login"/>} />
+          <Route path="/login" element={<LogIn />} />
+          <Route path="/signUp" element={<SignUp />} />
           <Route path="/RegistrationSuccess" element={<RegistrationSuccess />} />
           <Route path="/dashboard" element={<Dashboard/>}/>
           <Route path="/unauthorized" element={<Unauthorized/>}/>

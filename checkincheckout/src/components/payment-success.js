@@ -17,7 +17,6 @@ export const PaymentSuccess = () => {
     useEffect(() => {
         const validatePaymentAndGetReservation = async () => {
           try {
-            // 1. First validate the payment
             const validationResponse = await axios.post(
               `http://localhost:8080/api/checkout/validate-payment/${4}`,
               {},
@@ -68,10 +67,10 @@ export const PaymentSuccess = () => {
         }
       };
   return (
+    <>
     <div style={styles.container}>
       <div style={styles.card}>
         <div style={styles.content}>
-          {/* Checkmark icon */}
           <div style={styles.iconContainer}>
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -118,8 +117,8 @@ export const PaymentSuccess = () => {
             Plus tard
           </button>
         </div>
-      </div>
-    </div>
+      </div></div>
+    </>
   );
 };
 

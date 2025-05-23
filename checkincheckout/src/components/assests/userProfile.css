@@ -129,22 +129,6 @@
     margin-top: 0.4rem;
     display: block;
 }
-
-/* Responsive adjustments */
-@media (max-width: 640px) {
-    .user-profile-container {
-        padding: 1.5rem;
-        border-radius: 8px;
-    }
-    
-    .profile-header {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 1rem;
-    }
-    
-    .action-buttons {
-        width: 100%;
-        justify-content: flex-end;
-    }
+.profile-value{
+    width: 120px;;
 }

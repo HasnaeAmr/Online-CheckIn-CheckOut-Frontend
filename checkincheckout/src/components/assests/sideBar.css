@@ -1,0 +1,86 @@
+.sidebar {
+    height: 90vh;
+    width: 80px;
+    background-color: rgba(0, 0, 0, 0.85);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 20px;
+    border-bottom-right-radius: 20px;
+    backdrop-filter: blur(10px);
+    box-shadow: 5px 0 15px rgba(0, 0, 0, 0.3);
+    transition: width 0.3s ease;
+  }
+  
+  .menu {
+    margin-top: 60px;
+    display: flex;
+    flex-direction: column;
+    gap: 35px;
+    font-size: 28px;
+  }
+  
+  .menu button {
+    background: none;
+    border: none;
+    color: #ffffffcc;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
+  }
+  
+  .menu button:hover {
+    color: #f5e663;
+    transform: scale(1.08);
+    background: rgba(245, 230, 99, 0.15);
+  }
+  
+  .menu button.active {
+    color: #ffffff;
+    background: rgba(245, 230, 99, 0.6);
+    transform: scale(1.1);
+    box-shadow: 0 0 8px rgba(245, 230, 99, 0.4);
+  }
+  
+  
+  .bottom-icons {
+    margin-top: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    font-size: 26px;
+    margin-bottom: 25px;
+  }
+  
+  .bottom-icons button {
+    background: none;
+    border: none;
+    color: #ffffffcc;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border-radius: 50%;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+  }
+  
+  .bottom-icons button:hover {
+    background-color: rgba(245, 230, 99, 0.15);
+    color: #f5e663;
+    transform: scale(1.08);
+  }
+  
+  .bottom-icons .logout:hover {
+    background-color: rgba(239, 68, 68, 0.15);
+    color: #ef4444;
+    transform: scale(1.08);
+  }

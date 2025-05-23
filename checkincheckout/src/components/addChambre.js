@@ -184,7 +184,7 @@ export function AddChambre({onCancel, onSave }) {
     </div>
     
     <div className="submit-container">
-        <button className="submit-btn" onClick={handleSignup}>Modifier</button>
+        <button className="submit-btn" onClick={handleSignup}>Ajouter</button>
         <button 
                         type="button" 
                         className="cancel-btn"

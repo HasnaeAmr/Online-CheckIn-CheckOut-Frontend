@@ -33,7 +33,7 @@
     width: 32%;
     padding: 5px;
     border-radius: 10px;
-    height: 190px;
+    height: 200px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -41,7 +41,13 @@
     cursor: pointer;
     color: var(--color-dark-bg);
     border: none;
-    background-color: rgb(219, 219, 219);
+    background-color: rgb(255, 255, 255);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+.card1{
+  display: flex;
+  align-items: center;
+  text-align: center;
 }
 .statisctics-container .fcontainer{
     width: 150px;
@@ -100,22 +106,23 @@
     width: 95%;
     padding: 10px;
     margin: auto;
-    margin-top: 25px;
+    margin-top: 40px;
     display: flex;
     justify-content: space-between;
     align-items: start;
 }
 .ucontainer{
     color: var(--color-dark-bg);
-    width: 55%;
+    width: 66%;
 }
 .updates{
     display: flex;
     align-items: start;
+    height: 341px;
     padding: 20px;
     background-color: #f8f9fa;
     border-radius: 8px;
-    width: 43%;
+    width: 32%;
     color: var(--color-dark-bg);
     
 }

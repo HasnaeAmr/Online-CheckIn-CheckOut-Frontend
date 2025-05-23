@@ -17,19 +17,16 @@ export function EditUser({user, onCancel, onSave }) {
         nom: user?.nom || "",
         email: user?.email || "",
         cin: user?.cin || "",
-        role: user?.role || "",
-        password: ""
+        role: user?.role || ""
     });
     useEffect(() => {
         if (user) {
             setFormData({
-                id: user.id || "",
                 prenom: user.prenom || "",
                 nom: user.nom || "",
                 email: user.email || "",
                 cin: user.cin || "",
-                role: user.role || "",
-                password: user.password || "", 
+                role: user.role || ""
             });
         }
     }, [user]);
@@ -47,7 +44,7 @@ export function EditUser({user, onCancel, onSave }) {
     const handleSignup = async (e) => {
         e.preventDefault();
         
-        if (!formData.nom || !formData.cin || !formData.prenom || !formData.role || !formData.password) {
+        if (!formData.nom || !formData.cin || !formData.prenom || !formData.role ) {
             
             toast.error('Tous les champs sont obligatoires!', {
                 position: "top-center",
@@ -70,8 +67,7 @@ export function EditUser({user, onCancel, onSave }) {
                 email: user.email,
                 cin: user.cin,
                 role: user.role,
-                password: '',
-                confirmerPassword: ''
+               
               });
             }
             onCancel();
@@ -79,8 +75,15 @@ export function EditUser({user, onCancel, onSave }) {
 
         try {
             const response = await axios.put(
-                `http://localhost:8080/api/user/${formData.id}`,
-                formData,
+                `http://localhost:8080/api/user/${user.id}`,
+                {
+                    prenom: formData.prenom,
+                    nom: formData.nom,
+                    email: formData.email,
+                    cin: formData.cin,
+                    role: formData.role ,
+                    password: formData.password
+                },
                 {
                   headers: {
                     Authorization: `Bearer ${token}`,
@@ -92,7 +95,7 @@ export function EditUser({user, onCancel, onSave }) {
                             console.log('Showing toast for success'); 
                 toast.success(`Le compte a été modifié avec succès!`, {
                     position: "top-center",
-                    autoClose: 5000,
+                    autoClose: 3000,
                     hideProgressBar: false,
                     closeOnClick: true,
                     pauseOnHover: true,
@@ -107,12 +110,9 @@ export function EditUser({user, onCancel, onSave }) {
                         nom: "",
                         email: "",
                         cin: "",
-                        numeroPassport: "",
-                        password: "",
-                        role: "",
                     });
                 onSave();
-            }, 4000);
+            }, 3000);
             }
         } catch (err) {
             const errorMessage = err.response?.data?.message || "Une erreur est survenue durant l'enregistrement!";
@@ -205,17 +205,7 @@ export function EditUser({user, onCancel, onSave }) {
                 className="input"
             />
         </div>
-        <div className='input-field'>
-            <input 
-                type="text" 
-                placeholder='Mot de passe' 
-                onChange={handleChange}
-                value={formData.password}
-                name="password"
-                required
-                className="input"
-            />
-        </div>
+        
         
     </div>
     

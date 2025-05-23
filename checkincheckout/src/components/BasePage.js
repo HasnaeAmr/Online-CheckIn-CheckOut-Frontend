@@ -18,7 +18,6 @@ const navigate=useNavigate()
         <div className='base-page'>
         <div className='fcont'>
         <div className="logo">
-            <img src="../logo.svg"/>
         </div>
         <div className="right">
             <p><FontAwesomeIcon icon={faUser} /></p>
